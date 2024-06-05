@@ -8,6 +8,8 @@ function MovieTable({ name }) {
     return <p>C'est vide</p>;
   }
 
+  console.log(movie);
+
   return (
     <div>
       <table className="movie-table">

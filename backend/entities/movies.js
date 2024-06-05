@@ -9,7 +9,17 @@ const Movie = new typeorm.EntitySchema({
       generated: true,
     },
     title: { type: String },
-    date: { type: Number },
+    date: { type: Date },
+    description: { type: String },
+    note: { type: Number },
+  },
+  relations: {
+    categories: {
+      type: 'many-to-many',
+      target: 'Genre',
+      joinTable: true,
+      cascade: true,
+    },
   },
 });
 
