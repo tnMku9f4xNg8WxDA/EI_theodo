@@ -21,10 +21,15 @@ function MovieTable({ name }) {
             .map((film) => (
               <tr key={film.id}>
                 <td class="flex-item">
-                  <img
-                    alt=""
-                    src={'https://image.tmdb.org/t/p/w500/' + film.poster_path}
-                  ></img>
+                  <a href={'localhost:3000/movies/' + film.id}>
+                    {' '}
+                    <img
+                      alt=""
+                      src={
+                        'https://image.tmdb.org/t/p/w500/' + film.poster_path
+                      }
+                    ></img>
+                  </a>
                 </td>
               </tr>
             ))}
