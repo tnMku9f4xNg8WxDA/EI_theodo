@@ -6,7 +6,6 @@ const Genre = new typeorm.EntitySchema({
     id: {
       primary: true,
       type: Number,
-      generated: true,
     },
     name: { type: String },
   },
