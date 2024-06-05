@@ -1,22 +1,26 @@
-import logo from './logo.svg';
 import './Home.css';
+import { useState } from 'react';
+import MovieTable from '../../components/MovieTable/MovieTable';
 
 function Home() {
+  const [movieName, setmovieName] = useState('');
+
+  const savemovieName = (event) => {
+    setmovieName(event.target.value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://react.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Films d'Hyris télévision</p>
+        <input
+          type="text"
+          placeholder="Rechercher un film"
+          value={movieName}
+          onChange={savemovieName}
+        />
+        <p> Tu cherches : {movieName} </p>
+        <MovieTable name={movieName} />
       </header>
     </div>
   );
