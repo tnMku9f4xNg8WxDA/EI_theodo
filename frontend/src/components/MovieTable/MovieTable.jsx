@@ -26,24 +26,20 @@ function MovieTable({ name }) {
   return (
     <div>
       <table className="movie-table">
-        <tbody class="flex-container">
-          {movie_list
-            .filter((film) =>
-              film.title.toLowerCase().includes(name.toLowerCase())
-            )
-            .map((film) => (
-              <tr key={film.id}>
-                <td class="flex-item">
-                  <a href={'localhost:3000/movies/' + film.id}>
-                    {' '}
-                    <img
-                      alt=""
-                      src={'https://image.tmdb.org/t/p/w500/' + film.link}
-                    ></img>
-                  </a>
-                </td>
-              </tr>
-            ))}
+        <tbody className="flex-container">
+          {movie_list.map((film) => (
+            <tr key={film.id}>
+              <td className="flex-item">
+                <a href={'localhost:3000/movies/' + film.id}>
+                  {' '}
+                  <img
+                    alt=""
+                    src={'https://image.tmdb.org/t/p/w500/' + film.link}
+                  ></img>
+                </a>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
