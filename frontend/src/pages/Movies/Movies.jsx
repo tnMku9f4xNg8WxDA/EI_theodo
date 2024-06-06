@@ -4,6 +4,23 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function Movies() {
+  const userId = 123;
+
+  const avisUser = (userId, movieId, avis) => {
+    axios
+      .post(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/movies/?id_user=${userId}&id_film=${movieId}&is_a_like=${avis}`
+      )
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const { movieId } = useParams(); //recup param ds l'url
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
@@ -32,8 +49,10 @@ function Movies() {
       <h1>{title}</h1>
       {description}
       <img alt={title} src={'https://image.tmdb.org/t/p/w500' + linkimg} />
-      <button>J'AIME</button>
-      <button>Je n'aime pas</button>
+      <button onClick={() => avisUser(userId, movieId, true)}>J'AIME</button>
+      <button onClick={() => avisUser(userId, movieId, false)}>
+        Je n'aime pas
+      </button>
     </div>
   );
 }

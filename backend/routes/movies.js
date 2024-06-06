@@ -1,6 +1,7 @@
 import express from 'express';
 import { appDataSource } from '../datasource.js';
 import Movie from '../entities/movies.js';
+import evaluation_film from '../entities/evaluation_film.js';
 
 const router = express.Router();
 
@@ -60,6 +61,28 @@ router.get('/:movieId', function (req, res) {
     })
     .catch(function (error) {
       res.status(500).json({ message: 'BACK Error retrieving movie', error });
+    });
+});
+
+router.post('/', function (req, res) {
+  const evalRepository = appDataSource.getRepository(evaluation_film);
+  const newEval = evalRepository.create({
+    id_user: req.query.id_user,
+    id_film: req.query.id_film,
+    is_a_like: req.query.is_a_like == 'true' ? true : false,
+  });
+  console.log(newEval);
+  evalRepository
+    .save(newEval)
+    .then(function (savedEval) {
+      res.status(201).json({
+        message: 'eval successfully created',
+        id: savedEval.id,
+      });
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Error while creating the eval' });
     });
 });
 
