@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function Movies() {
-  const { movieId } = useParams(); //recup param ds l'url
+  const { movieId } = useParams();
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [linkimg, setLinkImg] = useState([]);
@@ -19,7 +19,7 @@ function Movies() {
       .catch((error) => {
         console.error('FRONT movie fetching error!', error);
       });
-  }, []);
+  }, [movieId]);
 
   return (
     <div>
