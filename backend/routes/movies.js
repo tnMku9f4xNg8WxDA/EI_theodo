@@ -4,10 +4,18 @@ import Movie from '../entities/movies.js';
 
 const router = express.Router();
 
-router.get('/', function (req, res) {
+router.get('/search', function (req, res) {
+  const offset = req.query.page ? (parseInt(req.query.page, 10) - 1) * 100 : 0;
+  const limit = req.query.limit ? parseInt(req.query.limit, 10) : 100;
+  const name = req.query.name ? req.query.name : '';
   appDataSource
     .getRepository(Movie)
-    .find({})
+    .createQueryBuilder('movie')
+    .where('movie.title LIKE :name', { name: `%${name}%` })
+    .orderBy('movie.note', 'DESC')
+    .offset(offset)
+    .limit(limit)
+    .getMany()
     .then(function (movies) {
       res.json({ movies: movies });
     });
@@ -18,6 +26,9 @@ router.post('/new', function (req, res) {
   const newMovie = movieRepository.create({
     title: req.body.title,
     date: req.body.date,
+    description: req.body.description,
+    note: req.body.note,
+    link: req.body.link,
   });
 
   movieRepository

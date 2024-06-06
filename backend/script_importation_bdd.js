@@ -87,4 +87,4 @@ appDataSource.initialize().then(() => {
     });
 });
 
-/* Il faut executer dans la console : node --env-file=.env script.js */
+/* Il faut executer dans la console : node --env-file=.env script_importation_bdd.js */
