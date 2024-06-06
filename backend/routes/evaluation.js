@@ -1,10 +1,12 @@
 import express from 'express';
 import { appDataSource } from '../datasource.js';
+import evaluation_Film from '../entities/evaluation_film.js';
 import Movie from '../entities/movies.js';
+import User from '../entities/user.js';
 
 const router = express.Router();
 
-router.get('/search', function (req, res) {
+/*router.get('/search', function (req, res) {
   const offset = req.query.page ? (parseInt(req.query.page, 10) - 1) * 100 : 0;
   const limit = req.query.limit ? parseInt(req.query.limit, 10) : 100;
   const name = req.query.name ? req.query.name : '';
@@ -19,67 +21,44 @@ router.get('/search', function (req, res) {
     .then(function (movies) {
       res.json({ movies: movies });
     });
-});
+});*/
 
-router.post('/new', function (req, res) {
+router.post('/', async function (req, res) {
+  const evalRepository = appDataSource.getRepository(evaluation_Film);
   const movieRepository = appDataSource.getRepository(Movie);
-  const newMovie = movieRepository.create({
-    title: req.body.title,
-    date: req.body.date,
-    description: req.body.description,
-    note: req.body.note,
-    link: req.body.link,
-  });
+  const userRepository = appDataSource.getRepository(User);
+  try {
+    const movie = await movieRepository.findOneBy({ id: req.body.id_film });
+    const user = await userRepository.findOneBy({ id: req.body.id_user });
 
-  movieRepository
-    .save(newMovie)
-    .then(function (savedMovie) {
-      res.status(201).json({
-        message: 'Movie successfully created',
-        id: savedMovie.id,
+    if (!movie || !user) {
+      return res.status(404).json({ message: 'Movie or User not found' });
+    }
+    console.log(req.body);
+    const newEval = evalRepository.create({
+      is_a_like: req.body.is_a_like,
+      film: movie,
+      user: user,
+    });
+
+    evalRepository
+      .save(newEval)
+      .then(function (savedEval) {
+        res.status(201).json({
+          message: 'Evaluation successfully created',
+          id: savedEval.id,
+        });
+      })
+      .catch(function (error) {
+        console.error(error);
+        res
+          .status(500)
+          .json({ message: 'Error while creating the evaluation' });
       });
-    })
-    .catch(function (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Error while creating the movie' });
-    });
-});
-
-router.get('/:movieId', function (req, res) {
-  appDataSource
-    .getRepository(Movie)
-    .findOne({ where: { id: req.params.movieId } })
-    .then(function (movie) {
-      if (movie) {
-        res.status(200).json(movie);
-      } else {
-        res.status(404).json({ message: 'Movie not found' });
-      }
-    })
-    .catch(function (error) {
-      res.status(500).json({ message: 'BACK Error retrieving movie', error });
-    });
-});
-
-router.delete('/:movieId', function (req, res) {
-  appDataSource
-    .getRepository(Movie)
-    .findOne({ where: { id: req.params.movieId } })
-    .then(function (movie) {
-      if (movie) {
-        appDataSource
-          .getRepository(Movie)
-          .delete({ id: req.params.movieId })
-          .then(function () {
-            res.status(200).json({ message: 'Movie successfully deleted' });
-          });
-      } else {
-        res.status(404).json({ message: 'Movie not found' });
-      }
-    })
-    .catch(function () {
-      res.status(500).json({ message: 'Error while deleting the movie' });
-    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error while creating the evaluation' });
+  }
 });
 
 export default router;

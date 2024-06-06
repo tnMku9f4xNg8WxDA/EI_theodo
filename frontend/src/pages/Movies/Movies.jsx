@@ -5,29 +5,61 @@ import { useEffect, useState } from 'react';
 
 function Movies() {
   const { movieId } = useParams();
-  const [title, setTitle] = useState([]);
-  const [description, setDescription] = useState([]);
-  const [linkimg, setLinkImg] = useState([]);
+  const [movie, setMovie] = useState({
+    title: '',
+    description: '',
+    linkimg: '',
+    note: 0,
+    date: new Date(),
+  });
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/movies/` + movieId)
       .then((response) => {
-        setTitle(response.data.title);
-        setDescription(response.data.description);
-        setLinkImg(response.data.link);
+        setMovie({
+          title: response.data.title,
+          description: response.data.description,
+          linkimg: response.data.link,
+          note: response.data.note,
+          date: new Date(response.data.date),
+        });
       })
       .catch((error) => {
         console.error('FRONT movie fetching error!', error);
       });
   }, [movieId]);
 
+  const userId = 0;
+
+  const handleReaction = (isLiked) => {
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/eval/`, {
+        movie_id: movieId,
+        user_id: userId,
+        is_a_like: isLiked,
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  /**/
+
   return (
     <div>
-      <h1>{title}</h1>
-      {description}
-      <img alt={title} src={'https://image.tmdb.org/t/p/w500' + linkimg} />
-      <button>J'AIME</button>
-      <button>Je n'aime pas</button>
+      <h1>{movie.title}</h1>
+      <p>{movie.description}</p>
+      <p>
+        Note de {(movie.note, console.log(movie))} et film sorti le{' '}
+        {movie.date.getDate()}/{movie.date.getMonth() + 1}/
+        {movie.date.getFullYear()}
+      </p>
+      <img
+        alt={movie.title}
+        src={'https://image.tmdb.org/t/p/w500' + movie.linkimg}
+      />
+      <button onClick={() => handleReaction(true)}>J'aime</button>
+      <button onClick={() => handleReaction(false)}>Je n'aime pas</button>
     </div>
   );
 }

@@ -14,13 +14,13 @@ const evaluation_film = new typeorm.EntitySchema({
     film: {
       type: 'one-to-many',
       target: 'Movie',
-      joinTable: true,
+      joinColumn: true,
       cascade: true,
     },
     user: {
       type: 'one-to-many',
       target: 'User',
-      joinTable: true,
+      joinColumn: true,
       cascade: true,
     },
   },
