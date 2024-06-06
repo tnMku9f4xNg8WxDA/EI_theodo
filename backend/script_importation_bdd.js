@@ -65,6 +65,7 @@ appDataSource.initialize().then(() => {
                     date: new Date(film.release_date),
                     description: film.overview,
                     note: film.vote_average,
+                    note_user: film.vote_average,
                     link: film.poster_path,
                     categories: categories,
                   });

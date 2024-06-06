@@ -8,9 +8,21 @@ const evaluation_film = new typeorm.EntitySchema({
       type: Number,
       generated: true,
     },
-    id_user: { type: Number },
-    id_film: { type: Number },
     is_a_like: { type: Boolean },
+  },
+  relations: {
+    film: {
+      type: 'one-to-many',
+      target: 'Movie',
+      joinTable: true,
+      cascade: true,
+    },
+    user: {
+      type: 'one-to-many',
+      target: 'User',
+      joinTable: true,
+      cascade: true,
+    },
   },
 });
 
