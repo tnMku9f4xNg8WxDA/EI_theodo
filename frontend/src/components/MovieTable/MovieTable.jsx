@@ -28,7 +28,7 @@ function MovieTable({ name }) {
           {movie_list.map((film) => (
             <tr key={film.id}>
               <td className="flex-item">
-                <a href={'localhost:3000/movies/' + film.id}>
+                <a href={'http://localhost:3000/movies/' + film.id}>
                   {' '}
                   <img
                     alt=""
