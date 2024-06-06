@@ -48,7 +48,7 @@ appDataSource.initialize().then(() => {
     .find({})
     .then(function (movie) {
       if (movie.length === 0) {
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 1000; i++) {
           fetch(
             'https://api.themoviedb.org/3/movie/popular?language=fr-FR&page=' +
               i,
@@ -68,16 +68,24 @@ appDataSource.initialize().then(() => {
                     link: film.poster_path,
                     categories: categories,
                   });
-                  movieRepository
-                    .save(newMovie)
-                    .then(function (savedMovie) {
-                      console.log(
-                        'Movie added successfully : ' + savedMovie.id
-                      );
-                    })
-                    .catch(function (error) {
-                      console.error(error);
-                    });
+                  if (
+                    newMovie.description.length > 0 &&
+                    newMovie.categories.length > 0 &&
+                    film.adult === false
+                  ) {
+                    movieRepository
+                      .save(newMovie)
+                      .then(function (savedMovie) {
+                        console.log(
+                          'Movie added successfully : ' + savedMovie.id
+                        );
+                      })
+                      .catch(function (error) {
+                        console.error(error);
+                      });
+                  } else {
+                    console.log('Film mal référencé');
+                  }
                 });
               });
             })

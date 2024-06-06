@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react';
 function MovieTable({ name }) {
   const [movie_list, setmovie_list] = useState([]);
 
-  console.log(movie_list);
-
   useEffect(() => {
     const url = name ? `?name=${name}` : '';
     axios
@@ -22,6 +20,7 @@ function MovieTable({ name }) {
   if (!movie_list || movie_list.length === 0) {
     return <p>C'est vide</p>;
   }
+  console.log(movie_list);
 
   return (
     <div>
