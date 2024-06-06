@@ -12,7 +12,7 @@ const Header = () => {
         Utilisateur
       </Link>
       <div>|</div>
-      <Link className="Link" to="/movies">
+      <Link className="Link" to="/moviesCreate">
         Ajouter un film
       </Link>
       <div>|</div>
