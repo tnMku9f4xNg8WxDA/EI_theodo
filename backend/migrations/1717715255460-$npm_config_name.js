@@ -2,21 +2,19 @@ import typeorm from "typeorm";
 
 const { MigrationInterface, QueryRunner } = typeorm;
 
-export default class BDD1717592613827 {
-    name = 'BDD1717592613827'
+export default class  $npmConfigName1717715255460 {
+    name = ' $npmConfigName1717715255460'
 
     async up(queryRunner) {
         await queryRunner.query(`
             CREATE TABLE "evaluation_film" (
                 "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-                "id_user" integer NOT NULL,
-                "id_film" integer NOT NULL,
                 "is_a_like" boolean NOT NULL
             )
         `);
         await queryRunner.query(`
             CREATE TABLE "genre" (
-                "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+                "id" integer PRIMARY KEY NOT NULL,
                 "name" varchar NOT NULL
             )
         `);
@@ -27,7 +25,8 @@ export default class BDD1717592613827 {
                 "date" datetime NOT NULL,
                 "description" varchar NOT NULL,
                 "note" integer NOT NULL,
-                "link" varchar NOT NULL
+                "link" varchar NOT NULL,
+                "note_user" integer NOT NULL
             )
         `);
         await queryRunner.query(`
