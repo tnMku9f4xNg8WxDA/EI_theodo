@@ -46,6 +46,8 @@ router.post('/new', function (req, res) {
 });
 
 router.get('/:movieId', function (req, res) {
+  //res.status(200).json({ title: 'titre du film', id: req.params.movieId });
+  console.log(appDataSource.getRepository(Movie));
   appDataSource
     .getRepository(Movie)
     .findOne({ where: { id: req.params.movieId } })
@@ -57,7 +59,7 @@ router.get('/:movieId', function (req, res) {
       }
     })
     .catch(function (error) {
-      res.status(500).json({ message: 'Error retrieving movie', error });
+      res.status(500).json({ message: 'BACK Error retrieving movie', error });
     });
 });
 
