@@ -1,5 +1,4 @@
 import './Movies.css';
-
 import { useParams } from 'react-router-dom';
 
 function Movies() {
