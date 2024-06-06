@@ -18,6 +18,9 @@ router.post('/new', function (req, res) {
   const newMovie = movieRepository.create({
     title: req.body.title,
     date: req.body.date,
+    description: req.body.description,
+    note: req.body.note,
+    link: req.body.link,
   });
 
   movieRepository

@@ -12,6 +12,7 @@ const Movie = new typeorm.EntitySchema({
     date: { type: Date },
     description: { type: String },
     note: { type: Number },
+    link: { type: String },
   },
   relations: {
     categories: {
