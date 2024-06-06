@@ -33,13 +33,7 @@ router.post('/new', function (req, res) {
     })
     .catch(function (error) {
       console.error(error);
-      if (error.code === '23505') {
-        res.status(400).json({
-          message: `User with email "${newMovie.email}" already exists`,
-        });
-      } else {
-        res.status(500).json({ message: 'Error while creating the user' });
-      }
+      res.status(500).json({ message: 'Error while creating the movie' });
     });
 });
 

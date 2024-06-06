@@ -1,19 +1,14 @@
 import './Movies.css';
-import MovieTable from '../../components/MovieTable/MovieTable';
-import { useFetchMovies } from './useFetchMovies';
-import AddMovieForm from '../../components/AddMovieForm/AddMovieForm';
+
+import { useParams } from 'react-router-dom';
 
 function Movies() {
-  const { movies, moviesLoadingError, fetchMovies } = useFetchMovies();
+  const { movieId } = useParams();
+  console.log(movieId);
 
   return (
-    <div className="Movies-container">
-      <h1>This page displays the movies</h1>
-      <AddMovieForm onSuccessfulMovieCreation={fetchMovies} />
-
-      {moviesLoadingError !== null && (
-        <div className="movies-loading-error">{moviesLoadingError}</div>
-      )}
+    <div>
+      <p>C'est le film {movieId}</p>
     </div>
   );
 }

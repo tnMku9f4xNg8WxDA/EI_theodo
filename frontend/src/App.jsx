@@ -15,6 +15,7 @@ function App() {
         <Route path="users" element={<Users />} />
         <Route path="about" element={<About />} />
         <Route path="movies" element={<Movies />} />
+        <Route path="movies/:movieId" element={<Movies />} />
       </Routes>
     </Layout>
   );
