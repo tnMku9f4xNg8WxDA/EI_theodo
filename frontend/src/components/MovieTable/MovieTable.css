@@ -7,8 +7,8 @@
   flex-wrap: wrap;
   justify-content: space-between; /* Ensure items are evenly spaced */
   padding: 0;
-  margin: 0;
   list-style: none;
+  justify-content: flex-start;
 }
 
 .flex-item {
