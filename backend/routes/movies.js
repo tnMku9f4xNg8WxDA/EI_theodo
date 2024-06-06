@@ -1,6 +1,7 @@
 import express from 'express';
 import { appDataSource } from '../datasource.js';
 import Movie from '../entities/movies.js';
+
 const router = express.Router();
 
 router.get('/search', function (req, res) {
