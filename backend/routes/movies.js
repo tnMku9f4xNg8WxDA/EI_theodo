@@ -45,8 +45,6 @@ router.post('/new', function (req, res) {
 });
 
 router.get('/:movieId', function (req, res) {
-  //res.status(200).json({ title: 'titre du film', id: req.params.movieId });
-  console.log(appDataSource.getRepository(Movie));
   appDataSource
     .getRepository(Movie)
     .findOne({ where: { id: req.params.movieId } })

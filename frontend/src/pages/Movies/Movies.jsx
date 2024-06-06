@@ -8,16 +8,10 @@ function Movies() {
   const [title, setTitle] = useState([]);
   const [description, setDescription] = useState([]);
   const [linkimg, setLinkImg] = useState([]);
-  console.log(movieId);
-  //axios.get('localhost:8000/movies/' + { movieId });
-  /*axios.get('localhost:8000/movies/4').then((response) => {
-    setMovies(['ee']).catch((error) => console.log(error));
-  });*/
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/movies/` + movieId)
       .then((response) => {
-        /*console.log(response.data);*/
         setTitle(response.data.title);
         setDescription(response.data.description);
         setLinkImg(response.data.link);
