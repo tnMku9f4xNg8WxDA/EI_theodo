@@ -5,6 +5,7 @@ import Layout from './components/Layout/Layout';
 import Counter from './pages/Counter/Counter';
 import Users from './pages/Users/Users';
 import Movies from './pages/Movies/Movies';
+import MoviesCreate from './pages/MoviesCreate/MoviesCreate';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="counter" element={<Counter />} />
         <Route path="users" element={<Users />} />
         <Route path="about" element={<About />} />
-        <Route path="movies" element={<Movies />} />
+        <Route path="moviesCreate" element={<MoviesCreate />} />
         <Route path="movies/:movieId" element={<Movies />} />
       </Routes>
     </Layout>

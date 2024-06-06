@@ -5,19 +5,19 @@ const Header = () => {
   return (
     <div className="Header-container">
       <Link className="Link" to="/">
-        Home
-      </Link>
-      <div>|</div>
-      <Link className="Link" to="/counter">
-        Counter
+        Menu
       </Link>
       <div>|</div>
       <Link className="Link" to="/users">
-        Users
+        Utilisateur
+      </Link>
+      <div>|</div>
+      <Link className="Link" to="/moviesCreate">
+        Ajouter un film
       </Link>
       <div>|</div>
       <Link className="Link" to="/about">
-        About
+        A propos
       </Link>
     </div>
   );
