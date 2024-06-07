@@ -29,6 +29,7 @@ router.post('/new', function (req, res) {
     description: req.body.description,
     note: req.body.note,
     link: req.body.link,
+    note_user: req.body.note_user,
   });
 
   movieRepository

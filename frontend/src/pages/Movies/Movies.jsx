@@ -15,6 +15,7 @@ function Movies() {
     linkimg: '',
     note: 0,
     date: new Date(),
+    note_user: 0,
   });
   const [Like, setLike] = useState({
     blue: PouceHautNb,
@@ -31,7 +32,9 @@ function Movies() {
           linkimg: response.data.link,
           note: response.data.note,
           date: new Date(response.data.date),
+          note_user: response.data.note,
         });
+        console.log(movie.note_user);
       })
       .catch((error) => {
         console.error('FRONT movie fetching error!', error);

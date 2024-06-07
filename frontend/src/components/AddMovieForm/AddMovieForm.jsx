@@ -8,6 +8,7 @@ const DEFAULT_FORM_VALUES = {
   description: '',
   note: '',
   link: '',
+  note_user: '',
 };
 
 function AddMovieForm({ onSuccessfulMovieCreation }) {
@@ -74,7 +75,11 @@ function AddMovieForm({ onSuccessfulMovieCreation }) {
           placeholder="Note"
           value={formValues.note}
           onChange={(event) =>
-            setFormValues({ ...formValues, note: event.target.value })
+            setFormValues({
+              ...formValues,
+              note: event.target.value,
+              note_user: event.target.value,
+            })
           }
         />
         <input
