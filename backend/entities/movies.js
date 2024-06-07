@@ -22,6 +22,11 @@ const Movie = new typeorm.EntitySchema({
       joinTable: true,
       cascade: true,
     },
+    notes: {
+      type: 'one-to-many',
+      target: 'evaluation_film',
+      inverseSide: 'film',
+    },
   },
 });
 
