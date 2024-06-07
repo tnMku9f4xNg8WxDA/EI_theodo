@@ -12,16 +12,18 @@ const evaluation_film = new typeorm.EntitySchema({
   },
   relations: {
     film: {
-      type: 'one-to-many',
+      type: 'many-to-one',
       target: 'Movie',
       joinColumn: true,
       cascade: true,
+      inverseSide: 'notes',
     },
     user: {
-      type: 'one-to-many',
+      type: 'many-to-one',
       target: 'User',
       joinColumn: true,
       cascade: true,
+      inverseSide: 'evaluations',
     },
   },
 });

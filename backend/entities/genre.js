@@ -9,6 +9,13 @@ const Genre = new typeorm.EntitySchema({
     },
     name: { type: String },
   },
+  relations: {
+    movies: {
+      type: 'many-to-many',
+      target: 'Movie',
+      inverseSide: 'categories',
+    },
+  },
 });
 
 export default Genre;

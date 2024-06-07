@@ -2,14 +2,16 @@ import typeorm from "typeorm";
 
 const { MigrationInterface, QueryRunner } = typeorm;
 
-export default class  $npmConfigName1717715255460 {
-    name = ' $npmConfigName1717715255460'
+export default class BDD1717746742135 {
+    name = 'BDD1717746742135'
 
     async up(queryRunner) {
         await queryRunner.query(`
             CREATE TABLE "evaluation_film" (
                 "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-                "is_a_like" boolean NOT NULL
+                "is_a_like" boolean NOT NULL,
+                "filmId" integer,
+                "userId" integer
             )
         `);
         await queryRunner.query(`
@@ -50,6 +52,31 @@ export default class  $npmConfigName1717715255460 {
         `);
         await queryRunner.query(`
             CREATE INDEX "IDX_5eb1cf4f3984bba73da5b30a72" ON "movie_categories_genre" ("genreId")
+        `);
+        await queryRunner.query(`
+            CREATE TABLE "temporary_evaluation_film" (
+                "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+                "is_a_like" boolean NOT NULL,
+                "filmId" integer,
+                "userId" integer,
+                CONSTRAINT "FK_5e1fead1f1783b1fdb34fb5b0a2" FOREIGN KEY ("filmId") REFERENCES "movie" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION,
+                CONSTRAINT "FK_fe47ab58156ae3aa63eb17840b2" FOREIGN KEY ("userId") REFERENCES "user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+            )
+        `);
+        await queryRunner.query(`
+            INSERT INTO "temporary_evaluation_film"("id", "is_a_like", "filmId", "userId")
+            SELECT "id",
+                "is_a_like",
+                "filmId",
+                "userId"
+            FROM "evaluation_film"
+        `);
+        await queryRunner.query(`
+            DROP TABLE "evaluation_film"
+        `);
+        await queryRunner.query(`
+            ALTER TABLE "temporary_evaluation_film"
+                RENAME TO "evaluation_film"
         `);
         await queryRunner.query(`
             DROP INDEX "IDX_3920e1b3b392d531456b11a0a0"
@@ -119,6 +146,29 @@ export default class  $npmConfigName1717715255460 {
         `);
         await queryRunner.query(`
             CREATE INDEX "IDX_3920e1b3b392d531456b11a0a0" ON "movie_categories_genre" ("movieId")
+        `);
+        await queryRunner.query(`
+            ALTER TABLE "evaluation_film"
+                RENAME TO "temporary_evaluation_film"
+        `);
+        await queryRunner.query(`
+            CREATE TABLE "evaluation_film" (
+                "id" integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+                "is_a_like" boolean NOT NULL,
+                "filmId" integer,
+                "userId" integer
+            )
+        `);
+        await queryRunner.query(`
+            INSERT INTO "evaluation_film"("id", "is_a_like", "filmId", "userId")
+            SELECT "id",
+                "is_a_like",
+                "filmId",
+                "userId"
+            FROM "temporary_evaluation_film"
+        `);
+        await queryRunner.query(`
+            DROP TABLE "temporary_evaluation_film"
         `);
         await queryRunner.query(`
             DROP INDEX "IDX_5eb1cf4f3984bba73da5b30a72"

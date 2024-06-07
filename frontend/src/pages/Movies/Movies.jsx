@@ -29,7 +29,7 @@ function Movies() {
       });
   }, [movieId]);
 
-  const userId = 0;
+  const userId = 2;
 
   const handleReaction = (isLiked) => {
     axios

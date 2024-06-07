@@ -72,6 +72,7 @@ appDataSource.initialize().then(() => {
                   if (
                     newMovie.description.length > 0 &&
                     newMovie.categories.length > 0 &&
+                    newMovie.note > 0.5 &&
                     film.adult === false
                   ) {
                     movieRepository
