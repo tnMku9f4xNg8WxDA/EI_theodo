@@ -66,7 +66,7 @@ router.post('/', async function (req, res) {
         if (count_true + count_false > 0) {
           user_genre[genre.id] = 0.01 + count_true / (count_true + count_false);
         } else {
-          user_genre[genre.id] = 0.3;
+          user_genre[genre.id] = 0.4;
         }
         appDataSource
           .getRepository(Movie)
@@ -75,9 +75,12 @@ router.post('/', async function (req, res) {
             const updatedMovies = movies.map((movie) => {
               movie.note_user =
                 movie.note *
-                movie.categories
-                  .map((genre_result) => user_genre[genre_result.id])
-                  .reduce((acc, current) => acc * current, 1);
+                Math.pow(
+                  movie.categories
+                    .map((genre_result) => user_genre[genre_result.id])
+                    .reduce((acc, current) => acc * current, 1),
+                  1 / movie.categories.length
+                );
 
               return movie;
             });
