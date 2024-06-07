@@ -1,13 +1,39 @@
-.Users-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.allPage {
+  display: grid;
+  grid-template-columns: 25% 75%;
 }
 
-.Users-container > :not(:last-child) {
-  margin-bottom: 20px;
+.imageMovie {
+  width: 80%;
 }
 
-.users-loading-error {
-  color: red;
+.title {
+  margin: 0;
+}
+
+.date {
+  margin-top: 0;
+  font-size: 13px;
+  color: grey;
+}
+
+.synopsis {
+  font-size: 23px;
+  margin-bottom: 5px;
+}
+
+.boutonAvis {
+  border: none;
+  background-color: #007bff00;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+}
+
+.pouceHaut {
+  width: 100%;
+}
+
+.pouceBas {
+  width: 100%;
 }
