@@ -82,11 +82,11 @@ function AddMovieForm({ onSuccessfulMovieCreation }) {
           placeholder="Lien image"
           value={formValues.link}
           onChange={(event) =>
-            setFormValues({ ...formValues, note: event.target.value })
+            setFormValues({ ...formValues, link: event.target.value })
           }
         />
         <button className="add-movie-button" type="submit">
-          Add movie
+          Ajouter
         </button>
       </form>
       {movieCreationSuccess !== null && (
