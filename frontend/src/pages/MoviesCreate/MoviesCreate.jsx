@@ -7,7 +7,7 @@ function MoviesCreate() {
 
   return (
     <div className="Movies-container">
-      <h1>This page displays the movies</h1>
+      <h1>Ajouter un film à la base de donnée</h1>
       <AddMovieForm onSuccessfulMovieCreation={fetchMovies} />
 
       {moviesLoadingError !== null && (

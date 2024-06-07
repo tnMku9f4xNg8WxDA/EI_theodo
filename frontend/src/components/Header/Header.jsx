@@ -16,7 +16,7 @@ const Header = () => {
         Ajouter un film
       </Link>
       <Link className="Link" to="/about">
-        A propos
+        À propos
       </Link>
     </div>
   );
