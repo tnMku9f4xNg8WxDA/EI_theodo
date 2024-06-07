@@ -2,13 +2,8 @@ import typeorm from "typeorm";
 
 const { MigrationInterface, QueryRunner } = typeorm;
 
-<<<<<<<< HEAD:backend/migrations/1717746742135-BDD.js
-export default class BDD1717746742135 {
-    name = 'BDD1717746742135'
-========
-export default class  $npmConfigName1717717200212 {
-    name = ' $npmConfigName1717717200212'
->>>>>>>> 2c1ddf7b304232c8e42cc559b3d6992c3bc0a4c4:backend/migrations/1717717200212-$npm_config_name.js
+export default class BDD1717757552347 {
+    name = 'BDD1717757552347'
 
     async up(queryRunner) {
         await queryRunner.query(`

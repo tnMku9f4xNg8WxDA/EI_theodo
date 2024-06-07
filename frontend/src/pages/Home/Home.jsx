@@ -1,5 +1,6 @@
 import './Home.css';
 import { useState } from 'react';
+import axios from 'axios';
 import loupe_recherche from './loupe_recherche.png';
 import MovieTable from '../../components/MovieTable/MovieTable';
 import { useFetchUsers } from './../Users/useFetchUsers';
@@ -21,6 +22,13 @@ function Home() {
     setUserFirstname('Vous êtes ' + firstname);
     setUserLastname(lastname);
     setUserID(id);
+    axios
+      .post(`${import.meta.env.VITE_BACKEND_URL}/user/connect`, {
+        user_id: userID,
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
