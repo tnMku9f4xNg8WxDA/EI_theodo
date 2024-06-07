@@ -63,9 +63,8 @@ function Movies() {
       <h1>{movie.title}</h1>
       <p>{movie.description}</p>
       <p>
-        Note de {(movie.note, console.log(movie))} et film sorti le{' '}
-        {movie.date.getDate()} {moisEnFrancais[movie.date.getMonth()]}{' '}
-        {movie.date.getFullYear()}
+        Note de {movie.note} et film sorti le {movie.date.getDate()}{' '}
+        {moisEnFrancais[movie.date.getMonth()]} {movie.date.getFullYear()}
       </p>
       <img
         alt={movie.title}
