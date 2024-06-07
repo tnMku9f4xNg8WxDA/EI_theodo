@@ -18,9 +18,8 @@ function MovieTable({ name }) {
   }, [name]);
 
   if (!movie_list || movie_list.length === 0) {
-    return <p>C'est vide</p>;
+    return <p>Aucun film ne correspond à cette recherche</p>;
   }
-  console.log(movie_list);
 
   return (
     <div>
@@ -33,7 +32,7 @@ function MovieTable({ name }) {
                   {' '}
                   <img
                     alt=""
-                    src={'https://image.tmdb.org/t/p/w500/' + film.link}
+                    src={'https://image.tmdb.org/t/p/w200/' + film.link}
                   ></img>
                 </a>
               </td>

@@ -1,21 +1,20 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
+import logo from './logo.png';
 
 const Header = () => {
   return (
     <div className="Header-container">
+      <img className="logo" alt="logo" src={logo}></img>
       <Link className="Link" to="/">
         Menu
       </Link>
-      <div>|</div>
       <Link className="Link" to="/users">
         Utilisateur
       </Link>
-      <div>|</div>
       <Link className="Link" to="/moviesCreate">
         Ajouter un film
       </Link>
-      <div>|</div>
       <Link className="Link" to="/about">
         A propos
       </Link>

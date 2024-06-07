@@ -1,5 +1,6 @@
 import './Home.css';
 import { useState } from 'react';
+import loupe_recherche from './loupe_recherche.png';
 import MovieTable from '../../components/MovieTable/MovieTable';
 
 function Home() {
@@ -11,16 +12,19 @@ function Home() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Films d'Hyris télévision</p>
-        <input
-          type="text"
-          placeholder="Rechercher un film"
-          value={movieName}
-          onChange={savemovieName}
-        />
-        <p> Tu cherches : {movieName} </p>
-        <MovieTable name={movieName} />
+      <header>
+        <div className="search">
+          <img className="imageSearch" src={loupe_recherche} alt="loupe" />
+          <input
+            type="text"
+            placeholder="Rechercher un film"
+            value={movieName}
+            onChange={savemovieName}
+          />
+        </div>
+        <div className="App-header">
+          <MovieTable name={movieName} />
+        </div>
       </header>
     </div>
   );
