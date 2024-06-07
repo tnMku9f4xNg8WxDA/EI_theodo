@@ -85,6 +85,7 @@ function Movies() {
           Date de sortie : {movie.date.getDate()}{' '}
           {moisEnFrancais[movie.date.getMonth()]} {movie.date.getFullYear()}
         </p>
+        <p>Avis des utilisateurs : {movie.note}/10</p>
         <p className="synopsis">Synopsis : </p>
         <span className="txt_synopsis">{movie.description}</span>
         <br />
